@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>游泳健身好评话术</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: linear-gradient(180deg, #0a1628 0%, #0d2137 30%, #0f2b4a 60%, #134a7a 100%);
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+  }
+  /* Water wave animation bg */
+  .wave-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 0;
+    opacity: 0.15;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234fc3f7' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom center;
+    background-size: cover;
+    animation: wave 8s linear infinite;
+  }
+  .wave:nth-child(2) {
+    bottom: 10px;
+    opacity: 0.5;
+    animation: wave 10s linear infinite reverse;
+  }
+  @keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); }
+  }
+  /* Bubbles */
+  .bubble {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), rgba(79,195,247,0.15));
+    border: 1px solid rgba(255,255,255,0.15);
+    animation: rise linear infinite;
+    z-index: 0;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 20px 0 28px;
+  }
+  .header-icon {
+    font-size: 52px;
+    display: block;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 4px 12px rgba(79,195,247,0.4));
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #4fc3f7, #81d4fa, #b3e5fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 6px;
+  }
+
+  /* Card */
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 22px 18px;
+    margin-bottom: 18px;
+  }
+
+  /* Result area */
+  .result-area {
+    min-height: 200px;
+    position: relative;
+  }
+  .review-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.92);
+    text-align: justify;
+    letter-spacing: 0.3px;
+    word-break: break-all;
+  }
+  .placeholder-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    padding: 50px 10px;
+    line-height: 1.8;
+  }
+
+  /* Buttons */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .btn {
+    flex: 1;
+    padding: 14px 8px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn-primary {
+    background: linear-gradient(135deg, #00acc1, #0097a7, #00838f);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0,172,193,0.35);
+  }
+  .btn-primary:hover { box-shadow: 0 6px 22px rgba(0,172,193,0.5); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-copy {
+    background: linear-gradient(135deg, #ff7043, #ff5722);
+    color: white;
+    box-shadow: 0 4px 16px rgba(255,87,34,0.3);
+    flex: none;
+    width: 100%;
+  }
+  .btn-copy.copied {
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    box-shadow: 0 4px 16px rgba(67,160,71,0.35);
+  }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px 0 4px;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4fc3f7;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    padding: 16px 0 0;
+  }
+
+  /* Fade in animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Wave BG -->
+<div class="wave-bg">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<!-- Bubbles (generated by JS) -->
+<div id="bubbles"></div>
+
+<div class="container">
+  <div class="header">
+    <span class="header-icon">🏊‍♂️</span>
+    <h1>游泳健身好评生成器</h1>
+    <p>一键生成 · 随机切换 · 复制即用</p>
+  </div>
+
+  <!-- Review Card -->
+  <div class="card">
+    <div class="result-area" id="resultArea">
+      <div class="placeholder-text" id="placeholder">
+        👇 点击下方按钮<br>自动生成好评话术
+      </div>
+      <div class="review-text fade-in" id="reviewText" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="generateReview()" id="genBtn">
+      🎲 随机生成
+    </button>
+    <button class="btn btn-secondary" onclick="generateReview()" style="flex:0.6">
+      🔄 换一条
+    </button>
+  </div>
+
+  <button class="btn btn-copy" id="copyBtn" onclick="copyReview()" style="display:none;">
+    📋 一键复制好评
+  </button>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num" id="totalCount">24</div>
+      <div class="stat-label">话术模板</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="usedCount">0</div>
+      <div class="stat-label">已使用</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    扫码即用 · 无需注册 · 保护隐私
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ 已复制到剪贴板</div>
+
+<script>
+// ===== REVIEW TEMPLATES =====
+// Each template covers all 9 dimensions the user specified
+
+const templates = [
+  // --- Template 1 ---
+  `对比了好几家游泳馆最后选了这家，位置很好找，停车也方便。一进门就被环境惊艳到了，泳池水质特别清澈完全没有氯气味，更衣室干净整洁还有吹风机。前台小姐姐很热情，教练专业又有耐心，会根据我的情况调整训练计划。游了一个月感觉体能明显变好了，睡眠质量也提高了。真心推荐给想学游泳的朋友！`,
+
+  // --- Template 2 ---
+  `朋友推荐来的，果然没踩雷！这家游泳馆在附近评分最高不是没有道理的。环境宽敞明亮，水温常年保持在28度左右特别舒适。池水循环处理做得好，肉眼可见的清澈。工作人员服务态度超好，从进门引导到离店送行都很贴心。停车免费而且车位充足，位置就在主干道旁边特别好找。练了两个月瘦了八斤，性价比真的高！`,
+
+  // --- Template 3 ---
+  `家附近的游泳馆对比了一圈，这家无论是环境还是服务都脱颖而出。进门第一印象就很好，大堂明亮整洁，泳池区域划分合理。水质是我去过最好的，没有刺鼻味道，泳道线清晰。救生员全程在岗让人很有安全感，前台和保洁阿姨都很友善。最满意的是淋浴间，热水稳定还配了洗发水沐浴露。坚持游了三个月，肩颈酸痛改善了很多，强烈安利！`,
+
+  // --- Template 4 ---
+  `被同事安利过来的，体验感超出预期！交通便利地铁直达，门口就有停车场。场馆比想象中大很多，深水区和浅水区分开，适合不同水平的泳友。水质管理严格，每天都能看到检测公示。教练小哥哥人帅又专业，纠正动作特别细致。更衣室有储物柜和拖鞋，细节到位。游完神清气爽，已经办卡续费了～`,
+
+  // --- Template 5 ---
+  `在网上看了大量评价才决定来这家，事实证明选择没错！位置在商圈旁边很好找，地下停车场直接电梯上楼。环境非常棒，挑高设计不压抑，采光也好。泳池水温适宜，水质清澈见底能看清池底瓷砖纹路。服务员看到你会主动打招呼问需求，体验感拉满。游了大半年体质明显增强，感冒都少了，值得长期坚持！`,
+
+  // --- Template 6 ---
+  `住这片区好几年了一直没找到满意的游泳馆，直到朋友带我来这里。第一眼就觉得专业——标准的50米泳池，分道清晰，水深标识醒目。水质没得说，换水频率高，没有那种黏糊糊的感觉。保洁人员一直在巡逻清理，地面始终保持干爽。前台办理效率高不排队，教练团队资质齐全。减脂效果明显，已推荐给邻居们！`,
+
+  // --- Template 7 ---
+  `冲着口碑来的，体验后觉得五星好评名副其实。交通方便公交地铁都能到，周边吃饭购物也方便所以顺路就来练了。场馆装修虽然不是最新但维护得很好，设施齐全功能完善。池水温度恒定在舒适区间，水质检测报告每月公示让人放心。工作人员响应速度快，有问题马上解决。游了四个月体脂率降了三个点，太值了！`,
+
+  // --- Template 8 ---
+  `之前在别家游过对比下来这家确实优秀。选址很好不在偏僻地段，开车过来路好走停车位够多。进店感觉就很正规，前台登记规范有序。泳池区域宽敞不拥挤，水质清澈透亮没有杂质漂浮物。救生员配备充足且专业，安全方面完全放心。淋浴区干净热水给力，还提供浴巾。整体体验很舒服，已经养成每周来三次的习惯了！`,
+
+  // --- Template 9 ---
+  `做了很多功课选中这家，主要看中它离家近评分又高。到店后发现比网上评价说的还好！环境整洁大气，泳池采用逆流式循环技术所以水质特别好。工作人员训练有素，从接待到指导全程礼貌周到。卫生间的干净程度堪比五星级酒店，这点太加分了。坚持游了半年多，整个人精神状态都不一样了，真心推荐给大家！`,
+
+  // --- Template 10 ---
+  `闺蜜推荐的游泳馆，来了之后彻底爱上！位置绝佳出门拐弯就到，对不开车的人太友好了。场馆内部空间很大，儿童区和成人区分开互不影响。水温一年四季恒温，冬天来也不冷。水质清澈见底没有任何异味，这点很多家做不到。教练根据我的基础定制了方案，进步很快。现在身材线条越来越好看，感恩遇到这么好的店！`,
+
+  // --- Template 11 ---
+  `在大众点评刷到这家评分4.9就抱着试试的心态来了，结果成了常客！停车超级方便门口就是露天停车场还不收费。一进大厅就感觉很敞亮，装修风格简约大方。泳池水质是我见过最干净的，站在岸边能看到池底每一块砖。员工服务意识很强，主动递毛巾指引储物柜位置。游了两个多月腰不酸背不痛了，办公室坐一天来游一圈简直治愈！`,
+
+  // --- Template 12 ---
+  `对比了方圆五公里内所有游泳馆最终锁定这家。地理位置优越在核心商圈，周围配套齐全游完可以直接去吃饭逛街。环境方面挑不出毛病，通风良好没有潮湿闷热的感觉。池水处理专业，ph值和余氯都有实时监测显示屏。救生员时刻关注水面安全有保障。前台小姐姐每次都记得我的名字，这种归属感太暖心了。效果显著必须好评！`,
+
+  // --- Template 13 ---
+  `被健身群里的朋友疯狂安利终于来打卡了！交通便捷自驾公共交通都方便到达。场馆规模不小，除了标准泳池还有儿童戏水区和热水泡池。水质管理是亮点，采用臭氧+紫外线双重消毒，没有任何刺激气味。保洁团队勤快，更衣室随时保持干爽整洁。教练一对一指导很负责，动作纠得很细。练了一个季度体检各项指标都改善了，太开心了！`,
+
+  // --- Template 14 ---
+  `找游泳馆找了很久，这家综合评分最高就来了。位置很好找导航精准到位，路边就能停很方便。进店感受最深的就是干净！从大厅到泳池到更衣室一尘不染。水温合适入水不冷不烫刚刚好，水质清澈透明看着就舒服。工作人员都很nice，见面微笑打招呼让人如沐春风。坚持规律游泳三个月体重掉了十斤，皮肤也变好了，强烈推荐给想运动的朋友！`,
+
+  // --- Template 15 ---
+  `同事说他家在这边游了好几年了，我跟着来体验了一次就直接办卡了。首先位置真的很方便，下班顺路过来不绕路。环境维护得很好，设施虽有些年头但保养得当看起来很新。泳池水质一流，换气系统好所以室内没有那种潮湿味儿。服务团队专业高效，从前台到教练到保洁配合默契。游了大半年感觉身体素质全面提升，这家店值得信赖！`,
+
+  // --- Template 16 ---
+  `搬家后重新找游泳馆，筛选条件就是近+干净+服务好，这家全中了！小区步行十分钟就到，对懒人极度友好。场馆不大但五脏俱全，该有的设施一样不少。最让我惊喜的是水质，清澈见底完全没有漂白粉刺鼻味。工作人员热情但不打扰，恰到好处的服务距离。淋浴间配有全套洗护用品很贴心。坚持每周三次现在精力充沛多了，好店要分享！`,
+
+  // --- Template 17 ---
+  `老婆给我办的卡本来不太情愿来，结果现在我自己天天想来😂。位置在商业综合体里很好找，停车楼上地下都方便。环境没话说，高端大气上档次的感觉。泳池采用国际标准建造，水质达到饮用水级别标准（他们自己宣传的我信了因为确实干净）。教练团队都是持证上岗的专业人士。游了五个月啤酒肚没了，老婆说我年轻了十岁哈哈！`,
+
+  // --- Template 18 ---
+  `带小孩来学游泳考察了很多家，最后选定这家。安全是首要考虑因素，这家救生员配比高且全程在岗，家长可以放心。水质对小朋友很重要，这里的水温和清洁度都达标，孩子游完不过敏不红眼。位置便利周边停车方便，等孩子的时候家长休息区也很舒适。前台和教练对孩子特别有耐心。孩子学了两个月已经能独立游25米了，感谢专业的团队！`,
+
+  // --- Template 19 ---
+  `作为一个挑剔的水质控，这家游泳馆的水质让我无可挑剔。选它是因为离家近加上评价里反复提到水质好。到店验证果然名不虚传——池水清澈见底无异味无杂质。环境整洁有序，地面防滑处理到位安全性好。工作人员专业素养高，回答问题准确耐心。停车方便车位充裕不限时。坚持游泳半年的变化：免疫力↑ 睡眠↑ 体重↓ 体态↑，满分推荐！`,
+
+  // --- Template 20 ---
+  `朋友说这家是附近性价比最高的游泳馆，亲测确实如此！位置好找在主路上招牌显眼，停车场免费这点太良心了。场馆内干净明亮通风好，没有一般游泳馆那种闷湿感。泳池分区合理，快慢道分开各不相扰。水质清澈恒温舒适，冬夏都适合来游。服务人员态度亲切有求必应。办卡到现在三个月了，每次来体验都很好，已经推荐给好几个同事了！`,
+
+  // --- Template 21 ---
+  `在这家游了一年多来说说真实感受。当初选它是因为离家近评分高，用下来每个方面都没让人失望。环境保持得一直很好，设施定期维护更新。水质管理严格规范，每天开门前都会先检测公示。工作人员稳定流动率低所以都认识熟面孔了，服务越来越贴心。停车从来不用担心没位子。身体的变化是最直观的证据——以前爬三层楼喘现在轻松搞定！`,
+
+  // --- Template 22 ---
+  `周末带爸妈一起来体验，全家都满意！老人家最在意卫生和安全，这家两点都做到了极致。更衣室防滑地垫、扶手、紧急呼叫按钮一应俱全，考虑周到。泳池坡度平缓适合各年龄段，水温恒定舒适。水质清澈无味让爸妈很放心。工作人员对老年顾客格外照顾，主动搀扶指引。位置好找停车方便，以后全家周末运动就定在这里了！`,
+
+  // --- Template 23 ---
+  `减肥试过各种方法最后发现游泳最适合我，而这家游泳馆最适合游泳🤣 选址聪明在居民区周边生活配套成熟，游完买菜回家一条龙。环境温馨不像有些地方冷冰冰的工业风。泳池大小适中不会空旷也不会拥挤。水质清澈度在线，没有那种游完身上黏腻的不适感。教练会根据你的目标给建议而不是硬推销。五个月减重十二斤，这家店是我的幸运星！`,
+
+  // --- Template 24 ---
+  `作为游泳爱好者换过好几家馆，这家是目前体验最佳的。交通四通八达无论从哪个方向过来都方便。场馆设计合理动线流畅不绕路。泳池采用逆流式循环+砂缸过滤双重保障水质，肉眼可见的清澈通透。服务团队训练有素响应迅速，有任何需求举手就有人来。卫生间的洁净程度让人印象深刻。坚持在这里锻炼一年多的成果：体脂率↓15% 肌肉量↑ 精力水平大幅提升，五星好评！`,
+];
+
+// Track used indices to avoid immediate repeats
+let lastIndices = [];
+let usedCount = 0;
+
+function generateReview() {
+  let idx;
+  // Avoid repeating recent ones if possible
+  const available = templates.map((_, i) => i).filter(i => !lastIndices.includes(i));
+  
+  if (available.length > 0) {
+    idx = available[Math.floor(Math.random() * available.length)];
+  } else {
+    // All used recently, pick random and reset
+    idx = Math.floor(Math.random() * templates.length);
+    lastIndices = [];
+  }
+  
+  lastIndices.push(idx);
+  if (lastIndices.length > Math.min(8, templates.length)) {
+    lastIndices.shift();
+  }
+  
+  usedCount++;
+  document.getElementById('usedCount').textContent = usedCount;
+  
+  const text = templates[idx];
+  const el = document.getElementById('reviewText');
+  const ph = document.getElementById('placeholder');
+  const copyBtn = document.getElementById('copyBtn');
+  
+  ph.style.display = 'none';
+  el.textContent = text;
+  el.style.display = 'block';
+  
+  // Re-trigger fade animation
+  el.classList.remove('fade-in');
+  void el.offsetWidth; // force reflow
+  el.classList.add('fade-in');
+  
+  copyBtn.style.display = 'flex';
+  copyBtn.classList.remove('copied');
+  copyBtn.innerHTML = '📋 一键复制好评';
+}
+
+async function copyReview() {
+  const text = document.getElementById('reviewText').textContent;
+  if (!text) return;
+  
+  try {
+    await navigator.clipboard.writeText(text);
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '✅ 已复制！可粘贴使用';
+    
+    showToast();
+  } catch (e) {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '✅ 已复制！可粘贴使用';
+    showToast();
+  }
+}
+
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+// Generate bubbles
+(function createBubbles() {
+  const container = document.getElementById('bubbles');
+  for (let i = 0; i < 12; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = Math.random() * 16 + 6;
+    b.style.width = size + 'px';
+    b.style.height = size + 'px';
+    b.style.left = Math.random() * 100 + '%';
+    b.style.bottom = '-' + size + 'px';
+    b.style.animationDuration = (Math.random() * 8 + 6) + 's';
+    b.style.animationDelay = (Math.random() * 6) + 's';
+    container.appendChild(b);
+  }
+})();
+
+// Update total count
+document.getElementById('totalCount').textContent = templates.length;
+
+// Auto generate on load for better UX
+setTimeout(generateReview, 600);
+</script>
+
+</body>
+</html>
